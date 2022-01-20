@@ -39,22 +39,25 @@ To use Hemia, follow the steps shown below:
   * Review the files and send the results back to the doctors
 <br>
 
-Example guide, how to make a Doctor's account:
+### How to make a Doctor's account:
+1. Register
 <html>
      <h1>
-        <img style="float: center;" src=/pictures/1.png width="1000" />
+        <img style="float: center;" src=/pictures/image.png width="1000" />
      </h1>
 </html>
 
+2. Sign-in
 <html>
      <h1>
-        <img style="float: center;" src=/pictures/2.png width="1000" />
+        <img style="float: center;" src=/pictures/image2.png width="1000" />
      </h1>
 </html>
 
+3. See your current patients
 <html>
      <h1>
-        <img style="float: center;" src=/pictures/3.png width="1000" />
+        <img style="float: center;" src=/pictures/image3.png width="1000" />
      </h1>
 </html>
 
