@@ -37,8 +37,26 @@ To use Hemia, follow the steps shown below:
 * As a lab techinician:
   * See available files sent to you from doctors
   * Review the files and send the results back to the doctors
-
 <br>
+
+Example guide, how to make a Doctor's account:
+<html>
+     <h1>
+        <img style="float: center;" src=/pictures/1.png width="1000" />
+     </h1>
+</html>
+
+<html>
+     <h1>
+        <img style="float: center;" src=/pictures/2.png width="1000" />
+     </h1>
+</html>
+
+<html>
+     <h1>
+        <img style="float: center;" src=/pictures/3.png width="1000" />
+     </h1>
+</html>
 
 ## Monitoring and Generating Alerts
 
