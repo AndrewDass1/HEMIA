@@ -15,14 +15,14 @@ jobs:
           path: ./terraform
       - terraform/apply:
           path: ./terraform
-      - slack/notify:
-          channel: hemia-circleci-alerts
-          event: pass
-          template: success_tagged_deploy_1
-      - slack/notify:
-          channel: hemia-circleci-alerts
-          event: fail
-          template: basic_fail_1
+      # - slack/notify:
+      #     channel: hemia-circleci-alerts
+      #     event: pass
+      #     template: success_tagged_deploy_1
+      # - slack/notify:
+      #     channel: hemia-circleci-alerts
+      #     event: fail
+      #     template: basic_fail_1
     working_directory: ~/src
 workflows:
   single-job-lifecycle:
