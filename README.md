@@ -62,4 +62,9 @@ To use Hemia, follow the steps shown below:
 </html>
 
 ## Monitoring and Generating Alerts
-
+The Hemia application is also integrated with Slack to give alerts on the application's current status. When the application is currently running or undergo a change, Slack shows a notification of the Hemia application run state whether it has been successful or failed to deploy.   
+<html>
+     <h1>
+        <img style="float: center;" src=/pictures/image4.png width="1000" />
+     </h1>
+</html>
