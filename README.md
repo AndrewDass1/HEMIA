@@ -18,8 +18,6 @@ The following technologies were used to create Hemia: <br>
 * Docker - Create an image of the application locally
 * AWS
   * RDS, MySQL - Database to enable login authentication and storing files
-  * ECR - Upload the application image to AWS 
-  * ECS - Use the ECR image to deploy it on this service 
   * CodePipeline - CI/CD services that checks for recent updates and errors to help publish the application securely onto the web
   * Elastic Beanstalk - Publish the application onto the web
 * Terraform - Provision AWS resources quickly
