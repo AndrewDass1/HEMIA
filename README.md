@@ -14,7 +14,7 @@ The Hemia application can be used by doctors and lab technicians. When accessing
 ## Technologies used to create Hemia
 The following technologies were used to create Hemia: <br>
 * PHP - Backend scripting language to create Hemia
-* HTML - Frontend scripting language to create Hemia
+* HTML, CSS, JavaScript - Frontend scripting languages to create Hemia
 * Docker - Create an image of the application locally
 * AWS
   * RDS, MySQL - Database to enable login authentication and storing files
