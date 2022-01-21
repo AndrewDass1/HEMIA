@@ -59,6 +59,33 @@ To use Hemia, follow the steps shown below:
      </h1>
 </html>
 
+# Terraform
+
+## Building a Terraform template
+
+1. First thing first, we need to tell Terraform the provider we want to use so create a provider.tf file:
+```terraform
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 3.27"
+    }
+  }
+
+  required_version = ">= 0.14.9"
+}
+
+provider "aws" {
+  profile = "default"
+  region  = "us-east-1"
+}
+```
+
+2. Create an S3 bucket and upload the zip folder. If the app.zip folder is not in your working directory, you need to specify the path for the source then.
+
+
+
 ## Monitoring and Generating Alerts
 The Hemia application is also integrated with Slack to give alerts on the application's current status. When the application is currently running or undergo a change, Slack shows a notification of the Hemia application run state whether it has been successful or failed to deploy.   
 <html>
