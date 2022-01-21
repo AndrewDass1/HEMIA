@@ -1,7 +1,7 @@
 version: 2.1
 orbs:
   terraform: circleci/terraform@3.0.0
-  slack: circleci/slack@4.6.1
+  slack: circleci/slack@4.1
 jobs:
   single-job-lifecycle:
     executor: terraform/default
@@ -15,14 +15,14 @@ jobs:
           path: ./terraform
       - terraform/apply:
           path: ./terraform
-      - slack/notify:
-          channel: hemia-circleci-alerts
-          event: pass
-          template: success_tagged_deploy_1
-      - slack/notify:
-          channel: hemia-circleci-alerts
-          event: fail
-          template: basic_fail_1
+      # - slack/notify:
+      #     channel: hemia-circleci-alerts
+      #     event: pass
+      #     template: success_tagged_deploy_1
+      # - slack/notify:
+      #     channel: hemia-circleci-alerts
+      #     event: fail
+      #     template: basic_fail_1
     working_directory: ~/src
 workflows:
   single-job-lifecycle:
