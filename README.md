@@ -63,7 +63,8 @@ To use Hemia, follow the steps shown below:
 
 ## Building a Terraform template
 
-1. First thing first, we need to tell Terraform the provider we want to use so create a provider.tf file:
+First thing first, we need to tell Terraform the provider we want to use so create a `provider.tf` file:
+
 ```terraform
 terraform {
   required_providers {
@@ -82,8 +83,68 @@ provider "aws" {
 }
 ```
 
-2. Create an S3 bucket and upload the zip folder. If the app.zip folder is not in your working directory, you need to specify the path for the source then.
+Create an S3 bucket and upload the zip folder, `s3.tf`. If the app.zip folder is not in your working directory, you need to specify the path for the source then.
 
+```terraform
+resource "aws_s3_bucket" "eb_bucket" {
+    bucket = "your-bucket-name"
+}
+resource "aws_s3_bucket_object" "eb_bucket_obj" {
+    bucket = aws_s3_bucket.eb_bucket.id
+    key = "beanstalk/app.zip"
+    source = "app.zip"  
+}
+```
+
+It's time to create an app and environment for it, `beanstalk.tf`. Application_version resource needs to be created as well as there is no way to specify the source code for the app environment (creating in the next block)
+
+```terraform
+resource "aws_elastic_beanstalk_application" "eb_app" {
+  name  = "your-app-name"
+  description = "simple php app"
+
+}
+resource "aws_elastic_beanstalk_application_version" "eb_app_ver" {
+    bucket = aws_s3_bucket.eb_bucket.id
+    key = aws_s3_bucket_object.eb_bucket_obj.id
+    application = aws_elastic_beanstalk_application.eb_app.name
+    name = "your-app-name-version-lable"
+
+}
+```
+Let's create an environment for our app, `elb-env.tf`. The platform needs to be declared, for the PHP app, try to use the latest - 64bit Amazon Linux 2 v3.3.9 running PHP 8.0.
+
+The setting section is to configure the app environment as per your needs, learn more
+
+An instance profile setting is required to create this template as it gives permissions to beanstalk to create ec2 instances and more.
+
+```terraform
+resource "aws_elastic_beanstalk_environment" "tfenv" {
+
+  name = "eb-tf-env"
+  application = aws_elastic_beanstalk_application.eb_app.name
+  solution_stack_name = "64bit Amazon Linux 2 v3.3.9 running PHP 8.0"
+  description = "environment for flask app"
+  version_label = aws_elastic_beanstalk_application_version.eb_app_ver.name
+
+  setting {
+      namespace = "aws:autoscaling:launchconfiguration"
+      name = "IamInstanceProfile"
+      value = "aws-elasticbeanstalk-ec2-role"
+  }
+
+}
+```
+
+Now just deploy this Terraform and see its magic!
+
+To deploy type the following commands in your terminal:
+`terraform init` - to initialize terraform
+`terraform plan` - to have reform review the tf files you created and display the actions and changes.
+`terraform apply` - to execute those actions and changes desginated by the plan command.
+if you make a mistake or you want to take teardown the terraform build, run `terraform destroy` to facilitate that.
+
+Reference article by: Gurlal Sidhu [here](https://dev.to/gsidhu13/deploy-a-flask-app-to-aws-elastic-beanstalk-with-terraform-36n8)
 
 
 ## Monitoring and Generating Alerts
